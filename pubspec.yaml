@@ -67,31 +67,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/images/bg_main.png
-    - assets/images/bg_level1.png
-    - assets/images/bg_level2.png
-    - assets/images/bg_level3.png
-    - assets/images/bg_level4.png
-    - assets/images/bg_level5.png
-    - assets/images/bg_level6.png
-    - assets/images/IconButton_Large_Blue_Rounded.9.png
-    - assets/images/logo.png
-    - assets/images/icon_setting.png
-    - assets/images/icon_ranking.png
-    - assets/images/icon_bill.png
-    - assets/images/coin_level1.png
-    - assets/images/coin_level2.png
-    - assets/images/coin_level3.png
-    - assets/images/coin_level4.png
-    - assets/images/coin_level5.png
-    - assets/images/coin_level6.png
-    - assets/images/icon_setting.svg
-    - assets/images/icon_ranking.svg
-    - assets/images/icon_menu.svg
-    - assets/images/icon_fire.svg
-    - assets/images/icon_touch_app.svg
     - assets/sounds/
-    - assets/sounds/coin_click.mp3
     # - assets/animations/
     # - assets/audio/
 

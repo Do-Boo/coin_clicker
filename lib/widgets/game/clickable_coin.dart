@@ -23,7 +23,8 @@ class ClickableCoin extends StatefulWidget {
   State<ClickableCoin> createState() => _ClickableCoinState();
 }
 
-class _ClickableCoinState extends State<ClickableCoin> with SingleTickerProviderStateMixin {
+class _ClickableCoinState extends State<ClickableCoin>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _scaleAnimation;
   final List<_ParticleInfo> _particles = [];
@@ -66,7 +67,7 @@ class _ClickableCoinState extends State<ClickableCoin> with SingleTickerProvider
     _controller.reverse(from: 1.0);
     final gameProvider = context.read<GameProvider>();
     final earnedAmount = gameProvider.playerData.effectiveClickPower;
-    
+
     if (widget.onTap != null) {
       widget.onTap!(earnedAmount);
     }
@@ -77,7 +78,7 @@ class _ClickableCoinState extends State<ClickableCoin> with SingleTickerProvider
 
     final RenderBox renderBox = context.findRenderObject() as RenderBox;
     final localPosition = renderBox.globalToLocal(details.globalPosition);
-    
+
     setState(() {
       _particles.add(_ParticleInfo(
         position: localPosition,
@@ -90,7 +91,11 @@ class _ClickableCoinState extends State<ClickableCoin> with SingleTickerProvider
       if (mounted) {
         setState(() {
           _particles.removeWhere((particle) =>
-              particle.createdAt.difference(DateTime.now()).inMilliseconds.abs() >= 1000);
+              particle.createdAt
+                  .difference(DateTime.now())
+                  .inMilliseconds
+                  .abs() >=
+              1000);
         });
       }
     });
@@ -117,10 +122,23 @@ class _ClickableCoinState extends State<ClickableCoin> with SingleTickerProvider
             onTapCancel: _handleTapCancel,
             child: ScaleTransition(
               scale: _scaleAnimation,
-              child: Image.asset(
-                widget.imagePath,
-                width: widget.size,
-                height: widget.size,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: widget.size,
+                    height: widget.size - 8,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF351b00),
+                      borderRadius: BorderRadius.circular(200),
+                    ),
+                  ),
+                  Image.asset(
+                    widget.imagePath,
+                    width: widget.size,
+                    height: widget.size - 3,
+                  ),
+                ],
               ),
             ),
           ),
@@ -187,7 +205,8 @@ class _CoinParticleEffect extends StatefulWidget {
   State<_CoinParticleEffect> createState() => _CoinParticleEffectState();
 }
 
-class _CoinParticleEffectState extends State<_CoinParticleEffect> with SingleTickerProviderStateMixin {
+class _CoinParticleEffectState extends State<_CoinParticleEffect>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final List<_Particle> _particles;
   final Random _random = Random();
@@ -205,7 +224,7 @@ class _CoinParticleEffectState extends State<_CoinParticleEffect> with SingleTic
       final angle = _random.nextDouble() * 2 * pi;
       final velocity = _random.nextDouble() * 100 + 100;
       final rotationSpeed = _random.nextDouble() * 10 - 5;
-      
+
       return _Particle(
         angle: angle,
         velocity: velocity,
@@ -269,13 +288,14 @@ class _CoinParticleEffectState extends State<_CoinParticleEffect> with SingleTic
               final distance = particle.velocity * progress;
               const gravity = 500.0;
               final dx = distance * cos(particle.angle);
-              final dy = distance * sin(particle.angle) + (0.5 * gravity * progress * progress);
-              
+              final dy = distance * sin(particle.angle) +
+                  (0.5 * gravity * progress * progress);
+
               final scale = (1 - progress) * 0.5 + 0.2;
               final opacity = 1 - progress;
-              
+
               final particleSize = 30 * scale;
-              
+
               return Positioned(
                 left: widget.position.dx + dx,
                 top: widget.position.dy + dy,
@@ -297,4 +317,4 @@ class _CoinParticleEffectState extends State<_CoinParticleEffect> with SingleTic
       ],
     );
   }
-} 
+}

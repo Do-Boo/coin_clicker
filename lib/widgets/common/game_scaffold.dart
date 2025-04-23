@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:coin_clicker/widgets/common/top_bar.dart';
+import 'package:coin_clicker/widgets/common/top_bar copy.dart';
+import 'package:coin_clicker/widgets/common/bottom_bar.dart';
 
 class GameScaffold extends StatelessWidget {
   final Widget child;
@@ -32,7 +33,7 @@ class GameScaffold extends StatelessWidget {
           children: [
             if (showTopBar) const TopBar(),
             Expanded(child: child),
-            if (showBottomBar) Container(height: 160, color: Colors.black.withOpacity(0.3)),
+            if (showBottomBar) const BottomBar(),
           ],
         ),
       ),
